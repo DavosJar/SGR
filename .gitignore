@@ -1,0 +1,47 @@
+# Archivos y carpetas específicos de Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+**/target/
+
+# Archivos de compilación y configuración de Grizzly
+.grizzly/
+grizzly.log
+
+# Configuración del IDE (Eclipse, IntelliJ, NetBeans, VS Code, etc.)
+*.iml
+*.ipr
+*.iws
+.idea/
+*.classpath
+*.project
+.settings/
+.vscode/
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Archivos específicos de sistemas operativos
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Configuración de entorno o credenciales
+.env
+*.env
+*.properties
+
+# Directorios específicos de Jersey o configuraciones de REST
+.wadl
+*.wadl
+swagger-ui/
+api-docs/
+
+# Otras configuraciones de caché y de sistema
+*.swp
+*.swo
+*~
