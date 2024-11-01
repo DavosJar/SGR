@@ -3,22 +3,29 @@ package com.app_rutas.models;
 public class Persona {
 
     private Integer id;
-
     private String nombre;
     private String apellido;
-    private String dni;
+    private TipoIdentificacion tipoIdentificacion;
+    private String identificacion;
     private String fechaNacimiento;
     private String direccion;
+    private String telefono;
+    private String email;
+    private Sexo sexo;
+
 
     public Persona() {}
 
-    public Persona(String nombre, String apellido, String dni, String fechaNacimiento, String direccion) 
-    {
+    public Persona(String nombre, String apellido, TipoIdentificacion tipoIdentificacion, String identificacion, String fechaNacimiento, String direccion, String telefono, String email, Sexo sexo) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.dni = dni;
+        this.tipoIdentificacion = tipoIdentificacion;
+        this.identificacion = identificacion;
         this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.sexo = sexo;
     }
 
     public Integer getId() {
@@ -45,12 +52,12 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public String getDni() {
-        return this.dni;
+    public String getidentificacion() {
+        return this.identificacion;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getFechaNacimiento() {
@@ -69,13 +76,35 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    @Override
-    public String toString() {
-        return  "Nombre: " + this.nombre + "\n" +
-                "Apellido: " + this.apellido + "\n" +
-                "dni: " + this.dni + "\n" +
-                "Fecha de nacimiento: " + this.fechaNacimiento + "\n" +
-                "Direccion: " + this.direccion;
+    public TipoIdentificacion getTipoIdentificacion() {
+        return tipoIdentificacion;
     }
 
+    public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
+        this.tipoIdentificacion = tipoIdentificacion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
 }
