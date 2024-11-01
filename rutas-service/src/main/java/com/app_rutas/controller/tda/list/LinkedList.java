@@ -64,15 +64,15 @@ public class LinkedList <E> {
     }
 
     private void addTail(E data) {
-        Node<E> aux = new Node<>(data);  // Crear el nuevo nodo
+        Node<E> aux = new Node<>(data); 
         if (isEmpty()) {
-            head = aux;  // Si la lista está vacía, asignar head
-            tail = head;  // También asignar tail
+            head = aux;  
+            tail = head;  
         } else {
-            tail.setNext(aux); // Conectar el nodo anterior al nuevo
-            tail = aux; // Mover tail al nuevo nodo
+            tail.setNext(aux); 
+            tail = aux; 
         }
-        size++; // Incrementar el tamaño aquí
+        size++; 
     }
     public void add(E data) {
         addTail(data);
@@ -138,38 +138,62 @@ public class LinkedList <E> {
         size = 0;
     }
 
-    public void delete(Integer index) throws ListEmptyException, IndexOutOfBoundsException {
+    public E delete(Integer index) throws ListEmptyException, IndexOutOfBoundsException {
         if (isEmpty()) {
             throw new ListEmptyException("La lista esta vacia");
-        }
-        if (index < 0 || index >= size) {
+        }else if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Indice fuera de rango");
+        }else if(index == 0){
+            return deleteHeader();
+        }else if(index == size - 1){
+            return deleteTail();
+        }else{
+            Node<E> prevNode = getNode(index - 1);
+            Node<E> actualNode = getNode(index);
+            E element = prevNode.getData();
+            Node<E> nextNode = actualNode.getNext();
+            actualNode = null;
+            prevNode.setNext(nextNode);
+            size--;
+            return element;
         }
-        if (index == 0) {
-            head = head.getNext();
-            if (size == 1) {
+    }
+    public E deleteHeader() throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("La lista esta vacia");
+        }else{
+            E element = head.getData();
+            Node<E> aux = head.getNext();
+            head = aux;
+            if(size == 1){
                 tail = null;
-                head = null;
             }
             size--;
-        } else { 
-            Node<E> prevNode = getNode(index - 1); 
-            Node<E> delNode = prevNode.getNext(); 
-            if (delNode == null) {
-                throw new IndexOutOfBoundsException("El nodo a eliminar es nulo");
-            }
-            prevNode.setNext(delNode.getNext());
-            if (index == size - 1) {
-                tail = prevNode; 
-            }
+            return element;
         }
-        size--; 
     }
-    public void deleteHeader() throws ListEmptyException {
-        delete(0);
-    }
-    public void deleteTail() throws ListEmptyException {
-        delete(size - 1);
+    public E deleteTail() throws ListEmptyException {
+        if(isEmpty()){
+            throw new ListEmptyException("La lista esta vacia");
+        }else{
+            E element = tail.getData();
+            Node<E> aux = getNode(size - 2);
+            if(aux == null){
+                head = null;
+                tail = null;
+                if(size == 2 ){
+                    tail = head;
+                }else{
+                    head = null;
+                }
+            }else{
+                tail = null;
+                tail = aux;
+                tail.setNext(null);
+            }
+            size--;
+            return element;
+        }
     }
     @Override
     public String toString() {
@@ -182,6 +206,27 @@ public class LinkedList <E> {
         }
         return sb.toString();
     }
+    public void update(E data, Integer post)throws ListEmptyException, IndexOutOfBoundsException{
+        if (isEmpty()) {
+            throw new ListEmptyException("La lista esta vacia");
+        }
+        if (post < 0 || post >= size) {
+            throw new IndexOutOfBoundsException("Indice fuera de rango");
+        }else if(post == 0){
+            head.setData(data);
+        }else if(post == size - 1){
+            tail.setData(data);
+        }else{
+            Node<E> search = head;
+            Integer count = 0;
+            while (count < post) {
+                count++;
+                search = search.getNext();
+            }
+            search.setData(data);
+        }
+    }
+
     public Object[] toArray() {
     // Usamos una lista temporal para evitar posiciones null
     List<Object> tempArray = new ArrayList<>();
