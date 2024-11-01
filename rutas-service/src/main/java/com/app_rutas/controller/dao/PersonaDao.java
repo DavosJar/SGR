@@ -51,7 +51,7 @@ public class PersonaDao extends AdapterDao<Persona> {
     public String toJson() {
         return g.toJson(getPersona());
     }
-
+    
     public Persona getPersonaById(Integer id) throws Exception {
         return get(id);
     }
@@ -72,4 +72,3 @@ public class PersonaDao extends AdapterDao<Persona> {
         return Sexo.values();
     }
 }
-
